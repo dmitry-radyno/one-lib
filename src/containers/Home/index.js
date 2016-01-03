@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
+import { Header } from 'components/Header';
+import { Footer } from 'components/Footer';
 
 /* components */
 
@@ -19,7 +21,11 @@ export class Home extends Component {
   render() {
     return (
       <section>
-        I'm home
+        <Header title="Тест" />
+        <div className="page">
+          I'm home
+        </div>
+        <Footer />
       </section>
     );
   }

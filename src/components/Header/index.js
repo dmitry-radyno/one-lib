@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 //import 'bootstrap-webpack';
 
-import { styles } from './header.scss';
-
 export class Header extends Component {
+  
+  static propTypes = {
+    title: React.PropTypes.string
+  }
+  
   render() {
     return (
-      <div className={`${styles}`}>
-        I'm header
-        <Link to="/">Home</Link>
-        <Link to="/list">List</Link>
+      <div className="header">
+        <h1>Библиотека ВГКС - {this.props.title}</h1>
       </div>
     );
   }

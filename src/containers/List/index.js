@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { EntitiesList } from 'components/EntitiesList';
-import { fetchEntities } from 'actions/entities';
+
+//import { fetchEntities } from 'actions/entities';
+import * as actionCreators from 'actions/entities';
 
 import DocumentMeta from 'react-document-meta';
 
-/* actions */
-import * as actionCreators from 'actions/entities';
+import { Header } from 'components/Header';
+import { Footer } from 'components/Footer';
+import { EntitiesList } from 'components/EntitiesList';
+
 
 const metaData = {
   title: 'One lib',
@@ -38,8 +41,9 @@ export class List extends Component {
         return (
             <section>
                 <DocumentMeta {...metaData} />
-                <h3>Entities list is here</h3>
+                <Header title="Список литературы" />
                 <EntitiesList {...this.props} />
+                <Footer />
             </section>
         );
     }
