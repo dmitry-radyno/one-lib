@@ -1,14 +1,14 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 /* containers */
 import { App } from 'containers/App';
-import { Home } from 'containers/Home';
-import { List } from 'containers/List';
+import { Books } from 'containers/Books';
+import { Book } from 'containers/Book';
 
 export default (
   <Route path="/" component={App}>
-    <Route path="home" component={Home} />
-    <Route path="list" component={List} />
+    <IndexRoute component={Books} />
+    <Route path="book/:bookId" component={Book} />
   </Route>
 );

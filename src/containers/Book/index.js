@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
+
 import { Header } from 'components/Header';
+import { Page } from 'components/Page';
 import { Footer } from 'components/Footer';
 
-/* components */
 
 const metaData = {
   title: 'Redux Easy Boilerplate',
@@ -17,13 +18,13 @@ const metaData = {
   },
 };
 
-export class Home extends Component {
+export class Book extends Component {
   render() {
     return (
       <section>
-        <Header title="Тест" />
+        <Header title="Электронный материал" />
         <Page>
-          I'm home
+          {this.props.params.bookId}
         </Page>
         <Footer />
       </section>

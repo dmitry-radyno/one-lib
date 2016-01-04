@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export class EntitiesList extends Component {
 
@@ -47,7 +48,10 @@ export class EntitiesList extends Component {
             <div>
                 {
                     entities.data.map((item, index) => 
-                        <div key={item.id}>{item.name} <span onClick={this.removeClickHandler} id={item.id}>(Remove)</span></div>
+                        <div key={item.id}>
+                            <Link to={`/book/${item.id}`}>{item.name}</Link>
+                            <span onClick={this.removeClickHandler} id={item.id}>(Remove)</span>
+                        </div>
                     )
                 }
                 <input type="text" onChange={this.changeHandler} value={inputValue} />
