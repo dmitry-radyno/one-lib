@@ -35,7 +35,7 @@ function failedRequestingEntities() {
 export function fetchEntities() {
     return dispatch => {
         dispatch(requestEntities());
-        
+
         return fetch("/data")
             .then(response => response.json())
             .catch(() => dispatch(failedRequestingEntities()))

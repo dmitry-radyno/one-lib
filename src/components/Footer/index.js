@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import 'bootstrap-webpack';
 
 import { styles } from './footer.scss';
 

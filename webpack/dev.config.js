@@ -24,9 +24,6 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery',
-    }),
   ],
 
   resolve: {
@@ -36,9 +33,6 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: /bootstrap\/js\//,
-      loader: 'imports?jQuery=jquery',
-    }, {
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url?limit=10000&mimetype=application/font-woff',
     }, {

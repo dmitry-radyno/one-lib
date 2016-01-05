@@ -2,8 +2,9 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var data = [
-    {id: 1, name: "Item 1"},
-    {id: 2, name: "Item 2"}
+    {id: 1, author: "Саймон Сингх", name: "Книга шифров", year: 2009},
+    {id: 2, author: "Энди Уир", name: "Марсианин", year: 2015},
+    {id: 3, author: "Стивен Хокинг", name: "Будущее пространства-времени", year: 2012}
 ];
 
 app.use(require('morgan')('short'));

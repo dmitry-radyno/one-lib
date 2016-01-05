@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 //import { fetchEntities } from 'actions/entities';
-import * as actionCreators from 'actions/entities';
+import * as bookActionCreators from 'actions/books';
 
 import DocumentMeta from 'react-document-meta';
 
@@ -28,8 +28,8 @@ const metaData = {
 };
 
 @connect(
-  state => state.entities,
-  dispatch => bindActionCreators(actionCreators, dispatch)
+  state => state.books,
+  dispatch => bindActionCreators(bookActionCreators, dispatch)
 )
 export class Books extends Component {
     static propTypes = {
@@ -42,11 +42,7 @@ export class Books extends Component {
     }
 
     render() {
-        const books = [
-            {id: 1, author: "Саймон Сингх", name: "Книга шифров", year: 2009},
-            {id: 2, author: "Энди Уир", name: "Марсианин", year: 2015},
-            {id: 3, author: "Стивен Хокинг", name: "Будущее пространства-времени", year: 2012}
-        ];
+        const books = this.props.data;
         return (
             <section>
                 <DocumentMeta {...metaData} />
