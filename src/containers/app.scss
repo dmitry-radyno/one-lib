@@ -283,4 +283,100 @@ body {
     .add-book-form__hidden-group {
         display: none;
     }
+
+    .pdf-viewer {
+        border: 1px solid #cccccc;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        height: 542px;
+        position: relative;
+    }
+    .pdf-viewer__toolbar {
+        padding: 10px 10px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100% - 17px);
+        box-sizing: border-box;
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 78%,rgba(255,255,255,0) 100%);
+    }
+    .pdf-viewer__nav-button {
+        z-index: 100;
+        padding: 10px;
+        box-sizing: border-box;
+        display: block;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        cursor: pointer;
+        margin-left: 10px;
+        float: left;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+    .pdf-viewer__nav-button:first-child {
+        margin-left: 0;
+    }
+    .pdf-viewer__nav-button:hover {
+        background-color: #eeeeee;
+    }
+    .pdf-viewer__pages {
+        padding: 10px;
+        margin-left: 10px;
+        float: left;
+        flex: 100 0 auto;
+        text-align: center;
+    }
+    .pdf-viewer__pages input[type="text"] {
+        width: 40px;
+        text-align: right;
+        border: none;
+        padding: 4px;
+        font-family: inherit;
+        font-size: inherit;
+        box-shadow: none;
+        display: inline;
+        border: 1px solid #ececec;
+    }
+
+    .pdf-viewer__scale {
+        padding: 10px;
+        margin-left: 10px;
+        float: left;
+        flex: 100 0 auto;
+        text-align: center;
+    }
+    .pdf-viewer__scale input[type="text"] {
+        width: 40px;
+        text-align: center;
+        border: none;
+        padding: 4px;
+        font-family: inherit;
+        font-size: inherit;
+        box-shadow: none;
+        display: inline;
+        border: 1px solid #ececec;
+        margin: 0 6px;
+    }
+    .pdf-viewer__scale button {
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 15px;
+        height: 24px;
+        width: 24px;
+        font-weight: bold;
+    }
+    .pdf-viewer__scale button:hover {
+        background-color: #eeeeee;
+    }
+    
+    .pdf-viewer__content {
+        overflow-y: auto;
+        overflow-x: auto;
+        height: 100%;
+        width: 100%;
+    }
 }

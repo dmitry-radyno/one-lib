@@ -7,7 +7,7 @@ export class Speciality extends Component {
         onAddSpec: React.PropTypes.func,
         onRemoveSpec: React.PropTypes.func,
     };
-    
+
     constructor(props) {
         super(props);
         this.onChangeHandler = this.onChangeHandler.bind(this);

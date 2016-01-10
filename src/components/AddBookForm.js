@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Speciality } from 'components/speciality';
+import { PDFViewer } from 'components/PDFViewer'
 
 export class AddBookForm extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ export class AddBookForm extends Component {
             author: "",
             year: "",
             keywords: "",
-            specs: []
+            specs: [],
+            page: 1
         };
         this.onChangeTypeHandler = this.onChangeTypeHandler.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
@@ -28,7 +30,7 @@ export class AddBookForm extends Component {
             type: event.target.value
         }));
     }
-    
+
     onChangeName(event) {
         this.setState(Object.assign(this.state, {
             name: event.target.value
@@ -121,9 +123,9 @@ export class AddBookForm extends Component {
                         <button className="button button-danger" onClick={this.onCancelClick}>Отмена</button>
                     </div>
                 </div>
-                <div className="add-book-form__right">Preview is here</div>
-                I'm edit form. And you?<br/>
-                {this.props.book}
+                <div className="add-book-form__right">
+                    <PDFViewer file="documents/1.pdf" />
+                </div>
             </div>
         );
     }

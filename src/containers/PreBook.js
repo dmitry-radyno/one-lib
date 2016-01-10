@@ -23,6 +23,7 @@ export class PreBook extends Component {
     render() {
         return (
             <section>
+                <script src="./test.js" />
                 <DocumentMeta {...Meta} />
                 <Header />
                     <Page>
