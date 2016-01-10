@@ -28,36 +28,34 @@ let addBook = function(state, action) {
     },
     requestBooks = function(state, action) {
         return Object.assign({}, state, {
-            isFetching: true,
+            fetching: true,
             data: state.data
         });
     },
     receiveBooks = function(state, action) {
         return Object.assign({}, state, {
-            isFetching: false,
+            fetching: false,
             data: action.posts
         });
     },
     failedRequestingBooks = function(state, action) {
         return Object.assign({}, state, {
-            entities: {
-                isFetching: false,
-                data: state.entities.data
-            }
+            fetching: false,
+            data: state.entities.data
         });
     };
 
-export function entities(state = initialState, action) {
+export function books(state = initialState, action) {
     switch (action.type) {
-        case 'ADD_ENTITY':
+        case 'ADD_BOOK':
             return addBook(state, action);
-        case 'REMOVE_ENTITY':
+        case 'REMOVE_BOOK':
             return removeBook(state, action);
-        case 'REQUEST_ENTITIES':
+        case 'REQUEST_BOOKS':
             return requestBooks(state, action);
-        case 'RECEIVE_ENTITIES':
+        case 'RECEIVE_BOOKS':
             return receiveBooks(state, action);
-        case 'FAILED_REQUESTING_ENTITIES':
+        case 'FAILED_REQUESTING_BOOKS':
             return failedRequestingBooks(state, action);
         default:
             return state;

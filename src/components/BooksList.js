@@ -5,24 +5,21 @@ export class BooksList extends Component {
 	
 	static propTypes = {
 		books: React.PropTypes.array
-	}
+	};
 
 	render() {
 		let { books } = this.props;
 		return (
 			<table className="booksList">
 				<tbody>
-					<tr>
-						<th>#</th>
-						<th>Год</th>
-						<th className="textRight">Ключевые слова/Специальности</th>
-					</tr>
 					{
 						books.map((book, index) => 
 							<tr className={index%2 === 0 ? "odd" : "even"} key={book.id}>
-								<td className="textLeft">{book.name}</td>
-								<td>{book.year}</td>
-								<td className="textRight">{book.keywords}</td>
+								<td className="textLeft">
+                                    <Link to={`book/${book.id}`}>
+                                        {book.author} - {book.name}, {book.year}
+                                    </Link>
+                                </td>
 							</tr>
 						)
 					}

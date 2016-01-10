@@ -6,6 +6,10 @@ var data = [
     {id: 2, author: "Энди Уир", name: "Марсианин", year: 2015},
     {id: 3, author: "Стивен Хокинг", name: "Будущее пространства-времени", year: 2012}
 ];
+var prebooks = [
+    { name: "Artur Hejli - Aeroport", filename: "1.pdf" },
+    { name: "Artur Hejli - Otel", filename: "2.pdf" }
+];
 
 app.use(require('morgan')('short'));
 
@@ -31,6 +35,14 @@ app.get('/', function root(req, res) {
 
 app.get('/data', function (req, res) {
   res.send(JSON.stringify(data));
+});
+
+app.get('/book/id', function (req, res) {
+    res.send(JSON.stringify(data[2]));
+});
+
+app.get('/prebooks', function (req, res) {
+    res.send(JSON.stringify(prebooks));
 });
 
 if (require.main === module) {

@@ -8,11 +8,11 @@ export class EntitiesList extends Component {
         dispatch: React.PropTypes.func,
         addEntity: React.PropTypes.func,
         removeEntity: React.PropTypes.func
-    }
+    };
 
     state = {
         value: ""
-    }
+    };
 
     constructor(props) {
         super(props);

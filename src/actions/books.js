@@ -1,44 +1,44 @@
-export function addEntity(id, name) {
+export function addBook(id, name) {
     return {
-        type: "ADD_ENTITY",
+        type: "ADD_BOOK",
         id: id,
         name: name
     };
 }
 
-export function removeEntity(id) {
+export function removeBook(id) {
     return {
-        type: "REMOVE_ENTITY",
+        type: "REMOVE_BOOK",
         id: id
     };
 }
 
-function requestEntities() {
+function requestBooks() {
     return {
-        type: "REQUEST_ENTITIES"
+        type: "REQUEST_BOOKS"
     };
 }
 
-function receiveEntities(posts) {
+function receiveBooks(posts) {
     return {
-        type: "RECEIVE_ENTITIES",
+        type: "RECEIVE_BOOKS",
         posts: posts
     };
 }
 
-function failedRequestingEntities() {
+function failedRequestingBooks() {
     return {
-        type: "FAILED_REQUESTING_ENTITIES"
+        type: "FAILED_REQUESTING_BOOKS"
     }
 }
 
-export function fetchEntities() {
+export function fetchBooks(searchValue) {
     return dispatch => {
-        dispatch(requestEntities());
+        dispatch(requestBooks(searchValue));
 
-        return fetch("/data")
+        return fetch("/data?query=" + encodeURIComponent(searchValue || ""))
             .then(response => response.json())
-            .catch(() => dispatch(failedRequestingEntities()))
-            .then(json => dispatch(receiveEntities(json)));
+            .then(json => dispatch(receiveBooks(json)))
+            .catch(() => dispatch(failedRequestingBooks()));
     };
 }
