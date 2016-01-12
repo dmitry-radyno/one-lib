@@ -1,6 +1,8 @@
 const initialState = {
     book: null,
-    fetching: false
+    fetching: false,
+    page: 1,
+    scale: 1.7
 };
 
 let requestBook = function(state, action) {
@@ -21,10 +23,15 @@ let requestBook = function(state, action) {
             book: null,
             error: action.error
         });
+    },
+    updateBookUI = function(state, action) {
+        return Object.assign({}, state, action.data);
     };
 
 export function book(state = initialState, action) {
     switch (action.type) {
+        case 'UPDATE_BOOK_UI':
+            return updateBookUI(state, action);
         case 'REQUEST_BOOK':
             return requestBook(state, action);
         case 'RECEIVE_BOOK':

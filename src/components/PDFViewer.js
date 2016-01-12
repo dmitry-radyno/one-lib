@@ -54,28 +54,34 @@ import PDF from 'react-pdf';
     }
 
     render() {
+        let downloadButton = <button className="pdf-viewer__nav-button" onClick={this.onDownloadClick}>Скачать</button>,
+            selectButton = <button className="pdf-viewer__nav-button pdf-viewer__nav-button_wide" onClick={this.onSelectClick}>Выбрать страницу</button>;
+
         let page = this.props.page;
         if (isNaN(page)) {
             page = "";
         } else {
             page = Math.min(Math.max(1, page), this.state.pages);
         }
+
         return (
             <div className="pdf-viewer">
                 <div className="pdf-viewer__toolbar">
                     <button className="pdf-viewer__nav-button" onClick={this.onFirstClick}>В начало</button>
-                    <button className="pdf-viewer__nav-button" onClick={this.onPrevClick}>Назад</button>
+                    <button className="pdf-viewer__nav-button" onClick={this.onLastClick}>В конец</button>
                     <div className="pdf-viewer__pages">
+                        <button onClick={this.onPrevClick}>&lt;</button>
                         <input type="text" value={page} onChange={this.onChangePage} />
                         <span>/ {this.state.pages}</span>
+                        <button onClick={this.onNextClick}>&gt;</button>
                     </div>
                     <div className="pdf-viewer__scale">
                         <button onClick={this.onDecreaseScale}>-</button>
                         <input type="text" value={this.props.scale.toFixed(1)} />
                         <button onClick={this.onIncreaseScale}>+</button>
                     </div>
-                    <button className="pdf-viewer__nav-button" onClick={this.onNextClick}>Вперед</button>
-                    <button className="pdf-viewer__nav-button" onClick={this.onLastClick}>В конец</button>
+                    {this.props.enableDownload ? downloadButton : ""}
+                    {this.props.enableDownload ? selectButton : ""}
                 </div>
                 <div className="pdf-viewer__content">
                     <PDF file={this.props.file} page={this.props.page} scale={this.props.scale} onDocumentComplete={this.onDocumentComplete} />

@@ -319,6 +319,9 @@ body {
         height: 35px;
         width: 95px;
     }
+    .pdf-viewer__nav-button_wide {
+        width: 150px;
+    }
     .pdf-viewer__nav-button:first-child {
         margin-left: 0;
     }
@@ -337,12 +340,17 @@ body {
         text-align: right;
         border: none;
         padding: 4px;
+        margin-left: 6px;
         margin-right: 3px;
         font-family: inherit;
         font-size: inherit;
         box-shadow: none;
         display: inline;
         border: 1px solid #ececec;
+    }
+    
+    .pdf-viewer__pages > span {
+        margin-right: 6px;
     }
 
     .pdf-viewer__scale {
@@ -364,6 +372,7 @@ body {
         border: 1px solid #ececec;
         margin: 0 6px;
     }
+    .pdf-viewer__pages button,
     .pdf-viewer__scale button {
         background-color: #ffffff;
         border: 1px solid #cccccc;
@@ -371,7 +380,9 @@ body {
         height: 24px;
         width: 24px;
         font-weight: bold;
+        outline: none;
     }
+    .pdf-viewer__pages button:hover,
     .pdf-viewer__scale button:hover {
         background-color: #eeeeee;
     }

@@ -1,8 +1,7 @@
-export function addBook(id, name) {
+export function addBook(book) {
     return {
         type: "ADD_BOOK",
-        id: id,
-        name: name
+        data: book
     };
 }
 
@@ -19,10 +18,10 @@ function requestBooks() {
     };
 }
 
-function receiveBooks(posts) {
+function receiveBooks(data) {
     return {
         type: "RECEIVE_BOOKS",
-        posts: posts
+        data: data
     };
 }
 
@@ -35,7 +34,7 @@ function failedRequestingBooks() {
 export function fetchBooks(searchValue) {
     return dispatch => {
         dispatch(requestBooks(searchValue));
-
+        
         return fetch("/data?query=" + encodeURIComponent(searchValue || ""))
             .then(response => response.json())
             .then(json => dispatch(receiveBooks(json)))

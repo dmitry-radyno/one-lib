@@ -28,3 +28,10 @@ export function fetchBook(id) {
             .catch(() => dispatch(failedReceivingBook()));
     };
 }
+
+export function updateBookUI(data) {
+    return {
+        type: "UPDATE_BOOK_UI",
+        data: data
+    };
+}

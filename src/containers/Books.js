@@ -35,7 +35,6 @@ export class Books extends Component {
     }
 
     render() {
-        const books = this.props.data;
         return (
             <section>
                 <DocumentMeta {...Meta} />
@@ -43,9 +42,9 @@ export class Books extends Component {
                 <Page>
                     <Toolbar>
                         <div className="toolbar-left"><SearchInput onChange={this.onSearchChange} /></div>
-                        <div className="toolbar-label toolbar-right">Всего электронных материалов: {books.length}</div>
+                        <div className="toolbar-label toolbar-right">Всего электронных материалов: {this.props.books.length}</div>
                     </Toolbar>
-                    <BooksList books={books} />
+                    <BooksList books={this.props.books} />
                 </Page>
                 <Footer />
             </section>

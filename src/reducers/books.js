@@ -1,63 +1,54 @@
+import { combineReducers } from 'redux';
+
 const initialState = {
     fetching: false,
-    data: []
+    books: []
 };
 
-let addBook = function(state, action) {
-        return Object.assign({}, state, {
-            data: [
-                ...state.data,
-                { id: action.id, name: action.name }
-            ]
-        });
-    },
-    removeBook = function(state, action) {
-        let id = action.id,
-            index = state.data.map((item) => item.id).indexOf(1*id);
-
-        if (index > -1) {
-            return Object.assign({}, state, {
-                data: [
-                    ...state.entities.data.slice(0, index),
-                    ...state.entities.data.slice(index + 1)
-                ]
-            });
-        } else {
-            throw Error("Removing unknown item - something wrong in UI");
+let fetching = function(state = initialState.fetching, action) {
+        switch (action.type) {
+            case 'REQUEST_BOOKS':
+                return true;
+            case 'RECEIVE_BOOKS':
+                return false;
+            case 'FAILED_REQUESTING_BOOKS':
+                return false;
+            default:
+                return state;
         }
     },
-    requestBooks = function(state, action) {
-        return Object.assign({}, state, {
-            fetching: true,
-            data: state.data
+    addBook = function(state, action) {
+        return [...state, action.data];
+    },
+    removeBook = function(state, action) {
+        return state.filter(function(book) {
+            return book.id === action.id;
         });
+    },
+    requestBooks = function(state, action) {
+        return [];
     },
     receiveBooks = function(state, action) {
-        return Object.assign({}, state, {
-            fetching: false,
-            data: action.posts
-        });
+        return [...action.data];
     },
     failedRequestingBooks = function(state, action) {
-        return Object.assign({}, state, {
-            fetching: false,
-            data: state.entities.data
-        });
+        return [];
+    },
+    books = function(state = initialState.books, action) {
+        switch (action.type) {
+            case 'ADD_BOOK':
+                return addBook(state, action);
+            case 'REMOVE_BOOK':
+                return removeBook(state, action);
+            case 'REQUEST_BOOKS':
+                return requestBooks(state, action);
+            case 'RECEIVE_BOOKS':
+                return receiveBooks(state, action);
+            case 'FAILED_REQUESTING_BOOKS':
+                return failedRequestingBooks(state, action);
+            default:
+                return state;
+        }
     };
 
-export function books(state = initialState, action) {
-    switch (action.type) {
-        case 'ADD_BOOK':
-            return addBook(state, action);
-        case 'REMOVE_BOOK':
-            return removeBook(state, action);
-        case 'REQUEST_BOOKS':
-            return requestBooks(state, action);
-        case 'RECEIVE_BOOKS':
-            return receiveBooks(state, action);
-        case 'FAILED_REQUESTING_BOOKS':
-            return failedRequestingBooks(state, action);
-        default:
-            return state;
-    }
-}
+export default combineReducers({ fetching, books });

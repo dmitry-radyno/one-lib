@@ -84,7 +84,7 @@ export class AddBookForm extends Component {
     }
     
     onSaveClick() {
-        console.log("Save", this.props);
+        this.props.addBook(this.props.data);
     }
     
     onCancelClick() {
