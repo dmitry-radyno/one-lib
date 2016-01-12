@@ -21,7 +21,7 @@ let updateData = function(state, action) {
     },
     data = function(state = initialState.data, action) {
         switch (action.type) {
-            case 'PREBOOK_DATA_UPDATE':
+            case 'PREBOOK_UPDATE_DATA':
                 return updateData(state, action);
             default:
                 return state;

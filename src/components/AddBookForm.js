@@ -22,31 +22,31 @@ export class AddBookForm extends Component {
     }
 
     onChangeTypeHandler(event) {
-        this.props.changePreBookState({
+        this.props.updatePreBookData({
             type: event.target.value
         });
     }
 
     onChangeName(event) {
-        this.props.changePreBookState({
+        this.props.updatePreBookData({
             name: event.target.value
         });
     }
     
     onChangeAuthor(event) {
-        this.props.changePreBookState({
+        this.props.updatePreBookData({
             author: event.target.value
         });
     }
 
     onChangeYear(event) {
-        this.props.changePreBookState({
+        this.props.updatePreBookData({
             year: event.target.value
         });
     }
 
     onChangeKeywords(event) {
-        this.props.changePreBookState({
+        this.props.updatePreBookData({
             keywords: event.target.value
         });
     }
@@ -56,17 +56,17 @@ export class AddBookForm extends Component {
         if (specs.indexOf(spec) === -1) {
             specs.push(spec);
         }
-        this.props.changePreBookState({
+        this.props.updatePreBookData({
             specs: specs
         });
     }
-    
+
     onRemoveSpec(spec) {
         let specs = this.props.data.specs;
         specs = specs.filter(function(candidate) {
             return candidate !== spec;
         });
-        this.props.changePreBookState({
+        this.props.updatePreBookData({
             specs: specs
         });
     }

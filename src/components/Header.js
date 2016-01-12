@@ -10,7 +10,7 @@ export class Header extends Component {
     render() {
         return (
             <div className="header">
-                <h1>Электронная библиотека</h1>
+                <h1>База данных электронных материалов</h1>
             </div>
         );
     }

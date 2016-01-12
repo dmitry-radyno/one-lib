@@ -305,7 +305,7 @@ body {
     }
     .pdf-viewer__nav-button {
         z-index: 100;
-        padding: 10px;
+        padding: 0;
         box-sizing: border-box;
         display: block;
         background-color: #ffffff;
@@ -316,6 +316,8 @@ body {
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
+        height: 35px;
+        width: 95px;
     }
     .pdf-viewer__nav-button:first-child {
         margin-left: 0;
@@ -324,7 +326,7 @@ body {
         background-color: #eeeeee;
     }
     .pdf-viewer__pages {
-        padding: 10px;
+        padding: 3px 10px;
         margin-left: 10px;
         float: left;
         flex: 100 0 auto;
@@ -335,6 +337,7 @@ body {
         text-align: right;
         border: none;
         padding: 4px;
+        margin-right: 3px;
         font-family: inherit;
         font-size: inherit;
         box-shadow: none;
@@ -343,7 +346,7 @@ body {
     }
 
     .pdf-viewer__scale {
-        padding: 10px;
+        padding: 3px 10px;
         margin-left: 10px;
         float: left;
         flex: 100 0 auto;
