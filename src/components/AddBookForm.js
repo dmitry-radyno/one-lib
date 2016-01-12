@@ -6,12 +6,6 @@ export class AddBookForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: "book",
-            name: "",
-            author: "",
-            year: "",
-            keywords: "",
-            specs: [],
             page: 1
         };
         this.onChangeTypeHandler = this.onChangeTypeHandler.bind(this);
@@ -23,60 +17,74 @@ export class AddBookForm extends Component {
         this.onRemoveSpec = this.onRemoveSpec.bind(this);
         this.onSaveClick = this.onSaveClick.bind(this);
         this.onCancelClick = this.onCancelClick.bind(this);
+        this.onChangePage = this.onChangePage.bind(this);
+        this.onChangeScale = this.onChangeScale.bind(this);
     }
 
     onChangeTypeHandler(event) {
-        this.setState(Object.assign(this.state, {
+        this.props.changePreBookState({
             type: event.target.value
-        }));
+        });
     }
 
     onChangeName(event) {
-        this.setState(Object.assign(this.state, {
+        this.props.changePreBookState({
             name: event.target.value
-        }));
+        });
     }
     
     onChangeAuthor(event) {
-        this.setState(Object.assign(this.state, {
+        this.props.changePreBookState({
             author: event.target.value
-        }));
+        });
     }
-    
+
     onChangeYear(event) {
-        this.setState(Object.assign(this.state, {
+        this.props.changePreBookState({
             year: event.target.value
-        }));
+        });
     }
 
     onChangeKeywords(event) {
-        this.setState(Object.assign(this.state, {
+        this.props.changePreBookState({
             keywords: event.target.value
-        }));
+        });
     }
 
     onAddSpec(spec) {
-        let specs = this.state.specs;
+        let specs = this.props.data.specs;
         if (specs.indexOf(spec) === -1) {
             specs.push(spec);
         }
-        this.setState(Object.assign(this.state, {
+        this.props.changePreBookState({
             specs: specs
-        }));
+        });
     }
     
     onRemoveSpec(spec) {
-        let specs = this.state.specs;
+        let specs = this.props.data.specs;
         specs = specs.filter(function(candidate) {
             return candidate !== spec;
         });
-        this.setState(Object.assign(this.state, {
+        this.props.changePreBookState({
             specs: specs
-        }));
+        });
+    }
+
+    onChangePage(page) {
+        this.props.updatePreBookUI({
+            page: page
+        });
+    }
+
+    onChangeScale(scale) {
+        this.props.updatePreBookUI({
+            scale: scale
+        });
     }
     
     onSaveClick() {
-        console.log("Save", this.state);
+        console.log("Save", this.props);
     }
     
     onCancelClick() {
@@ -88,28 +96,28 @@ export class AddBookForm extends Component {
             <div className="add-book-form">
                 <div className="add-book-form__left">
                     <div className="add-book-form__group">
-                        <input type="radio" name="type" value="book" id="book" checked={this.state.type === "book"} onChange={this.onChangeTypeHandler} />
+                        <input type="radio" name="type" value="book" id="book" checked={this.props.data.type === "book"} onChange={this.onChangeTypeHandler} />
                         <label htmlFor="book">Книга</label><br/>
-                        <input type="radio" name="type" value="material" id="material" checked={this.state.type === "material"} onChange={this.onChangeTypeHandler} />
+                        <input type="radio" name="type" value="material" id="material" checked={this.props.data.type === "material"} onChange={this.onChangeTypeHandler} />
                         <label htmlFor="material">Методический материал</label>
                     </div>
                     <div className="add-book-form__group">
                         <label htmlFor="bookName">Название книги</label>
-                        <textarea rows="4" id="bookName" placeholder="Книга шифров" value={this.state.name} onChange={this.onChangeName}></textarea>
+                        <textarea rows="4" id="bookName" placeholder="Книга шифров" value={this.props.data.name} onChange={this.onChangeName}></textarea>
                     </div>
                     <div className="add-book-form__group">
                         <label htmlFor="bookAuthor">Автор</label>
-                        <textarea rows="4" id="bookAuthor" placeholder="Саймон Сингх" value={this.state.author} onChange={this.onChangeAuthor}></textarea>
+                        <textarea rows="4" id="bookAuthor" placeholder="Саймон Сингх" value={this.props.data.author} onChange={this.onChangeAuthor}></textarea>
                     </div>
                     <div className="add-book-form__group">
                         <label htmlFor="bookYear">Год издания</label>
-                        <input type="text" id="bookYear" placeholder="2007" value={this.state.year} onChange={this.onChangeYear} />
+                        <input type="text" id="bookYear" placeholder="2007" value={this.props.data.year} onChange={this.onChangeYear} />
                     </div>
-                    <div className={this.state.type === "book" ? "add-book-form__group" : "add-book-form__hidden-group"}>
+                    <div className={this.props.data.type === "book" ? "add-book-form__group" : "add-book-form__hidden-group"}>
                         <label htmlFor="bookKeywords">Ключевые слова</label>
-                        <input type="text" id="bookKeywords" placeholder="криптография, шифры" value={this.state.keywords} onChange={this.onChangeKeywords} />
+                        <input type="text" id="bookKeywords" placeholder="криптография, шифры" value={this.props.data.keywords} onChange={this.onChangeKeywords} />
                     </div>
-                    <div className={this.state.type === "material" ? "add-book-form__group" : "add-book-form__hidden-group"}>
+                    <div className={this.props.data.type === "material" ? "add-book-form__group" : "add-book-form__hidden-group"}>
                         <label htmlFor="bookSpecs">Специальности</label><br/>
 
                         <Speciality name="Почтовая связь" onAddSpec={this.onAddSpec} onRemoveSpec={this.onRemoveSpec} />
@@ -124,7 +132,7 @@ export class AddBookForm extends Component {
                     </div>
                 </div>
                 <div className="add-book-form__right">
-                    <PDFViewer file="documents/1.pdf" />
+                    <PDFViewer file="documents/1.pdf" page={this.props.ui.page} scale={this.props.ui.scale} onChangePage={this.onChangePage} onChangeScale={this.onChangeScale} />
                 </div>
             </div>
         );

@@ -5,15 +5,16 @@ import DocumentMeta from 'react-document-meta';
 import Meta from 'meta';
 
 import * as bookActionCreators from 'actions/books';
+import * as prebookActionCreators from 'actions/prebook';
 
 import { Header } from 'components/Header';
 import { Page } from 'components/Page';
 import { Footer } from 'components/Footer';
 import { AddBookForm } from 'components/AddBookForm';
 
-
 @connect(
-    dispatch => bindActionCreators(bookActionCreators, dispatch)
+    state => state.prebook,
+    dispatch => bindActionCreators({ ...prebookActionCreators, ...bookActionCreators }, dispatch)
 )
 export class PreBook extends Component {
     static propTypes = {
