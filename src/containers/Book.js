@@ -23,7 +23,11 @@ export class Book extends Component {
     
     constructor(props) {
         super(props);
-        this.props.fetchBook(this.props.bookId);
+        this.props.fetchBook(this.props.routeParams.bookId);
+    }
+    
+    componentWillMount() {
+        this.props.clearBookPage();
     }
     
     render() {

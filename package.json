@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
+    "watch": "node_modules/.bin/webpack --config webpack/prod.config.js --watch",
     "build": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
     "test": "karma start"
   },
@@ -81,7 +82,6 @@
   "dependencies": {
     "babel-runtime": "^6.3.19",
     "react": "^0.14.2",
-    "react-pdf": "0.0.9",
     "react-redux": "^4.0.0",
     "react-router": "1.0.3",
     "redux": "^3.0.4",

@@ -25,9 +25,6 @@ let fetching = function(state = initialState.fetching, action) {
             return book.id === action.id;
         });
     },
-    requestBooks = function(state, action) {
-        return [];
-    },
     receiveBooks = function(state, action) {
         return [...action.data];
     },
@@ -40,8 +37,6 @@ let fetching = function(state = initialState.fetching, action) {
                 return addBook(state, action);
             case 'REMOVE_BOOK':
                 return removeBook(state, action);
-            case 'REQUEST_BOOKS':
-                return requestBooks(state, action);
             case 'RECEIVE_BOOKS':
                 return receiveBooks(state, action);
             case 'FAILED_REQUESTING_BOOKS':

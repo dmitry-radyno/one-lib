@@ -82,16 +82,40 @@ export class AddBookForm extends Component {
             scale: scale
         });
     }
-    
+
     onSaveClick() {
-        this.props.addBook(this.props.data);
+        var valid = true,
+            isEmpty = function(candidate) {
+                return ("" + candidate).length === 0;
+            };
+
+        if (this.props.data.type === "book") {
+            if (isEmpty(this.props.data.name) ||
+                isEmpty(this.props.data.author) ||
+                isEmpty(this.props.data.year) ||
+                isEmpty(this.props.data.keywords)) {
+                    valid = false;
+            }
+        } else {
+            if (isEmpty(this.props.data.name) ||
+                isEmpty(this.props.data.author) ||
+                isEmpty(this.props.data.year) ||
+                this.props.data.specs.length === 0) {
+                    valid = false;
+            }
+        }
+
+        if (valid) {
+            this.props.addBook(this.props.routeParams.prebookId, this.props.data);
+        }
     }
     
     onCancelClick() {
-        console.log("Cancel");
+        window.location.hash = "/manage";
     }
 
     render() {
+        var filename = "tmp/" + this.props.routeParams.prebookId;
         return (
             <div className="add-book-form">
                 <div className="add-book-form__left">
@@ -132,7 +156,7 @@ export class AddBookForm extends Component {
                     </div>
                 </div>
                 <div className="add-book-form__right">
-                    <PDFViewer file="documents/1.pdf" page={this.props.ui.page} scale={this.props.ui.scale} onChangePage={this.onChangePage} onChangeScale={this.onChangeScale} />
+                    <PDFViewer file={filename} page={this.props.ui.page} scale={this.props.ui.scale} onChangePage={this.onChangePage} onChangeScale={this.onChangeScale} />
                 </div>
             </div>
         );

@@ -1,0 +1,6 @@
+RewriteEngine on
+
+RewriteRule ^(.*docx)$ server/docx.php?filename=$1 [L]
+RewriteRule ^(.*doc)$ server/docx.php?filename=$1 [L]
+
+RewriteRule ^api/(.*)$ server/api.php?request=$1 [QSA]

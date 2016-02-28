@@ -23,6 +23,8 @@ let updateData = function(state, action) {
         switch (action.type) {
             case 'PREBOOK_UPDATE_DATA':
                 return updateData(state, action);
+            case 'COMPLETE_ADD_BOOK':
+                return initialState.data;
             default:
                 return state;
         }
@@ -35,6 +37,8 @@ let updateData = function(state, action) {
         switch (action.type) {
             case 'PREBOOK_UPDATE_UI':
                 return updateUI(state, action);
+            case 'COMPLETE_ADD_BOOK':
+                return initialState.ui;
             default:
                 return state;
         }

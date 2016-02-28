@@ -21,7 +21,7 @@ export function fetchPreBooks() {
     return dispatch => {
         dispatch(requestPreBooks());
 
-        return fetch("/prebooks")
+        return fetch("./api/tempdoc/get")
             .then(response => response.json())
             .then(json => dispatch(receivePreBooks(json)))
             .catch(() => dispatch(failedRequestingPreBooks()));

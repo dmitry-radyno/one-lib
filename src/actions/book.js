@@ -8,7 +8,7 @@ function requestBook(id) {
 function receiveBook(book) {
     return {
         type: "RECEIVE_BOOK",
-        book: book
+        book: book[0]
     }
 }
 
@@ -22,7 +22,7 @@ export function fetchBook(id) {
     return dispatch => {
         dispatch(requestBook(id));
         
-        return fetch("/book/id")
+        return fetch("./api/book/get?id=" + encodeURIComponent(id))
             .then(response => response.json())
             .then(json => dispatch(receiveBook(json)))
             .catch(() => dispatch(failedReceivingBook()));
@@ -33,5 +33,32 @@ export function updateBookUI(data) {
     return {
         type: "UPDATE_BOOK_UI",
         data: data
+    };
+}
+
+export function addDownloadPage(page) {
+    return {
+        type: "ADD_DOWNLOAD_PAGE",
+        data: page
+    };
+}
+
+export function removeDownloadPage(page) {
+    return {
+        type: "REMOVE_DOWNLOAD_PAGE",
+        data: page
+    };
+}
+
+export function showMessage(message) {
+    return {
+        type: "SHOW_MESSAGE",
+        data: message
+    };
+}
+
+export function clearBookPage() {
+    return {
+        type: "CLEAR_BOOK_STATE"
     };
 }

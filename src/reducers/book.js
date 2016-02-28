@@ -2,43 +2,69 @@ const initialState = {
     book: null,
     fetching: false,
     page: 1,
-    scale: 1.7
+    scale: 1.7,
+    downloadPages: [],
+    message: ""
 };
 
-let requestBook = function(state, action) {
+var reducers = {
+    'UPDATE_BOOK_UI': function(state, action) {
+        return Object.assign({}, state, action.data);
+    },
+    'REQUEST_BOOK': function(state, action) {
         return Object.assign({}, state, {
             fetching: true,
             book: null
         });
     },
-    receiveBook = function(state, action) {
+    'RECEIVE_BOOK': function(state, action) {
         return Object.assign({}, state, {
             fetching: false,
             book: action.book
         });
     },
-    failedRequestingBook = function(state, action) {
+    'FAILED_REQUESTING_BOOK': function(state, action) {
         return Object.assign({}, state, {
             fetching: false,
             book: null,
             error: action.error
         });
     },
-    updateBookUI = function(state, action) {
-        return Object.assign({}, state, action.data);
-    };
+    'ADD_DOWNLOAD_PAGE': function(state, action) {
+        return Object.assign({}, state, {
+            downloadPages: state.downloadPages.concat([action.data])
+        });
+    },
+    'REMOVE_DOWNLOAD_PAGE': function(state, action) {
+        return Object.assign({}, state, {
+            downloadPages: state.downloadPages.filter(function(candidate) {
+                return candidate !== action.data;
+            })
+        });
+    },
+    'SHOW_MESSAGE': function(state, action) {
+        return Object.assign({}, state, {
+            message: action.data
+        });
+    },
+    'CLEAR_BOOK_STATE': function(state, action) {
+        return Object.assign({}, state, {
+            page: 1,
+            scale: 1.7,
+            downloadPages: [],
+            message: ""
+        });
+    }
+};
+
 
 export function book(state = initialState, action) {
-    switch (action.type) {
-        case 'UPDATE_BOOK_UI':
-            return updateBookUI(state, action);
-        case 'REQUEST_BOOK':
-            return requestBook(state, action);
-        case 'RECEIVE_BOOK':
-            return receiveBook(state, action);
-        case 'FAILED_REQUESTING_BOOK':
-            return failedRequestingBook(state, action);
-        default:
-            return state;
-    }
+    if (reducers.hasOwnProperty(action.type)) {
+        return reducers[action.type](state, action);
+    }/* else {
+        if (action.type.indexOf("@@redux") !== 0 && action.type.indexOf("@@router") !== 0) {
+            throw Error("Unknown action type: " + action.type);
+        }
+    }*/
+    return state;
 }

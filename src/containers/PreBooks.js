@@ -44,8 +44,8 @@ export class PreBooks extends Component {
                                 prebooks.map((prebook, index) => 
                                     <tr className={index%2 === 0 ? "odd" : "even"} key={index}>
                                         <td className="textLeft">
-                                            <Link to={`prebook/${prebook.filename}`}>
-                                                {prebook.filename}
+                                            <Link to={`prebook/${prebook.name}`}>
+                                                {prebook.name}
                                             </Link>
                                         </td>
                                     </tr>
